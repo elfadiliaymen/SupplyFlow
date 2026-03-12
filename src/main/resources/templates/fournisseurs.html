@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Liste des Fournisseurs</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>ville</th>
+        <th>telephone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="f : ${Fournisseurs}">
+        <td th:text="${f.id}"></td>
+        <td th:text="${f.name}"></td>
+        <td th:text="${f.ville}"></td>
+        <td th:text="${f.telephone}"></td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<a th:href = "@{/fournisseurs/ajouter}">Ajouter un Fournisseur</a>
+<a th:href="@{/}">Retour à l'accueil</a>
+
+</body>
+</html>

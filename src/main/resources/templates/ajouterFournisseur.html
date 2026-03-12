@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Ajouter un Fournisseur</h1>
+<form th:action="@{/fournisseurs/ajouter}" th:object="${Fournisseur}"  method="Post">
+    <div>
+        <label>Nom :</label>
+        <input type="text" th:field="*{name}">
+    </div>
+    <div>
+        <label>Ville :</label>
+        <input type="text" th:field="*{ville}">
+    </div>
+    <div>
+        <label>Telephone :</label>
+        <input type="number" th:field="*{telephone}">
+    </div>
+    <button type="submit">Enregistrer</button>
+</form>
+
+<br>
+<a th:href="@{/fournisseurs}">Annuler et retourner à la liste</a>
+</body>
+</html>

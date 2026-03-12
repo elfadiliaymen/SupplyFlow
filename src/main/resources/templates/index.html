@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Bienvenue</title>
 </head>
 <body>
 <h1>Bienvenue dans SupplyFlow !</h1>
-<a href="produits.html"> voir les Produits</a>
+<a th:href="@{/produits}">Les Produits</a>
+<hr>
+<a th:href="@{/fournisseurs}">Les Fournisseurs</a>
+<hr>
+<a th:href="@{/mouvements}">Les Mouvements</a>
 </body>
 </html>

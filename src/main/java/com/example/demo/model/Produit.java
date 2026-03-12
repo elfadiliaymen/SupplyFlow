@@ -13,19 +13,15 @@ public class Produit {
     private String designation;
     private double prix;
     private int stock;
-    @ManyToOne
-    private Fournisseur fournisseur;
-
 
     public Produit(){}
 
 
-    public Produit(Long id, String designation, double prix, int stock, Fournisseur fournisseur) {
+    public Produit(Long id, String designation, double prix, int stock) {
         this.id = id;
         this.designation = designation;
         this.prix = prix;
         this.stock = stock;
-        this.fournisseur = fournisseur;
     }
 
     public Long getId() {
@@ -60,11 +56,5 @@ public class Produit {
         this.stock = stock;
     }
 
-    public Fournisseur getFournisseur() {
-        return fournisseur;
-    }
 
-    public void setFournisseur(Fournisseur fournisseur) {
-        this.fournisseur = fournisseur;
-    }
 }

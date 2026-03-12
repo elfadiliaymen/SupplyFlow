@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Ajouter une Mouvement</h1>
+
+<form th:action="@{/mouvements/ajouter}" th:object="${Mouvement}"  method="Post">
+    <div>
+        <label>Type :</label>
+        <input type="text" th:field="*{type}">
+    </div>
+    <div>
+        <label>Quantite :</label>
+        <input type="number"  th:field="*{quanity}">
+    </div>
+    <div>
+        <label>Date :</label>
+        <input type="date" th:field="*{date}">
+    </div>
+    <button type="submit">Enregistrer</button>
+</form>
+
+<br>
+<a th:href="@{/mouvements}">Annuler et retourner à la liste</a>
+
+</body>
+</html>
