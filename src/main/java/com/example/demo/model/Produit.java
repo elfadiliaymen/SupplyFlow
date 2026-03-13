@@ -3,6 +3,8 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "produits")
 public class Produit {
@@ -13,15 +15,22 @@ public class Produit {
     private String designation;
     private double prix;
     private int stock;
+    @ManyToOne
+    @JoinColumn(name = "fournisseur_id")
+    private Fournisseur fournisseur;
+
+    @OneToMany(mappedBy = "produit" , cascade = CascadeType.ALL)
+    private List<Mouvement> mouvment;
 
     public Produit(){}
 
 
-    public Produit(Long id, String designation, double prix, int stock) {
+    public Produit(Long id, String designation, double prix, int stock , Fournisseur fournisseur) {
         this.id = id;
         this.designation = designation;
         this.prix = prix;
         this.stock = stock;
+        this.fournisseur = fournisseur;
     }
 
     public Long getId() {
@@ -54,6 +63,13 @@ public class Produit {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
     }
 
 

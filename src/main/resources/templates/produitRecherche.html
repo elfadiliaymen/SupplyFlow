@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1> Produit </h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Désignation</th>
+        <th>Prix</th>
+        <th>Stock</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${Produit}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.designation}"></td>
+        <td th:text="${p.prix}"></td>
+        <td th:text="${p.stock}"></td>
+        <td>
+            <a th:href="@{'/produits/modifier/' + ${p.id}}">Modifier</a>
+
+            <a th:href="@{'/produits/delete/' + ${p.id}}">Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<a th:href = "@{/produits/ajouter}">Ajouter un produit</a>
+<a th:href="@{/}">Retour à l'accueil</a>
+
+
+</body>
+</html>
