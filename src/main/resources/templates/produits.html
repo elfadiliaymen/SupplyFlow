@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Liste des Produits</h1>
+    <form th:action="@{/produits/recherche" method="GET">
+        <input type="text" name="designation" th:value="${recherche}">
+        <button type="submit">rechercher</button>
+    </form>
     <table border="1">
         <thead>
             <tr>
@@ -13,7 +17,7 @@
                 <th>Désignation</th>
                 <th>Prix</th>
                 <th>Stock</th>
-                <th>Fournisseur</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +26,11 @@
                 <td th:text="${p.designation}"></td>
                 <td th:text="${p.prix}"></td>
                 <td th:text="${p.stock}"></td>
+                <td>
+                    <a th:href="@{'/produits/modifier/' + ${p.id}}">Modifier</a>
+
+                    <a th:href="@{'/produits/delete/' + ${p.id}}">Supprimer</a>
+                </td>
             </tr>
         </tbody>
     </table>

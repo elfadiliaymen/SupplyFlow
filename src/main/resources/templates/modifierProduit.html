@@ -5,12 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Ajouter un Produit</h1>
 
-<form th:action="@{/produits/ajouter}" th:object="${Produit}"  method="Post">
+<h1>Modifier un Produit</h1>
+
+<form th:action="@{/produits/update}" th:object="${Produit}"  method="PUT">
+    <input type="hidden" th:field="*{id}">
     <div>
         <label>Désignation :</label>
-        <input type="text" th:field="*{designation}">
+        <input type="text" th:field="*{designation}" value="">
     </div>
     <div>
         <label>Prix :</label>
@@ -20,7 +22,7 @@
         <label>Stock :</label>
         <input type="number" th:field="*{stock}">
     </div>
-    <button type="submit">Enregistrer</button>
+    <button type="submit">Enregistrer les modifications</button>
 </form>
 
 <br>
