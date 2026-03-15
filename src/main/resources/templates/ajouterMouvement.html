@@ -11,7 +11,22 @@
 <form th:action="@{/mouvements/ajouter}" th:object="${Mouvement}"  method="Post">
     <div>
         <label>Type :</label>
-        <input type="text" th:field="*{type}">
+        <select th:field="*{type}" >
+            <option th:value = "Entree">Entrée</option>
+            <option th:value = "Sortie">Sortie</option>
+        </select>
+    </div>
+    <div>
+        <label>Produit :</label>
+        <select th:field="*{produit}">
+        <option value="">---</option>
+        <option th:each = "p : ${Produits}"
+        th:value="${p.id}"
+        th:text = "${p.designation}">
+
+        </option>
+
+        </select>
     </div>
     <div>
         <label>Quantite :</label>

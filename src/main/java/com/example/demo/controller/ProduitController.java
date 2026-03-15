@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Produit;
+import com.example.demo.repository.FournisseurRepository;
 import com.example.demo.repository.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ public class ProduitController {
 
     @Autowired
     private ProduitRepository produitRepository;
+    @Autowired
+    private FournisseurRepository fournisseurRepository;
 
     @GetMapping("/")
     public String index() {
@@ -32,6 +35,7 @@ public class ProduitController {
     @GetMapping("/produits/ajouter")
     public String afficherFormulaire(Model model){
       model.addAttribute("Produit" , new Produit());
+      model.addAttribute("Fournisseurs" , fournisseurRepository.findAll());
       return "ajouterProduit";
     }
 
@@ -52,6 +56,7 @@ public class ProduitController {
     public String afficherFormModifier(@PathVariable("id") Long id , Model model)
     {
       model.addAttribute("Produit" , produitRepository.findById(id).get());
+      model.addAttribute("Fournisseurs" , fournisseurRepository.findAll());
       return "modifierProduit";
     }
 
@@ -67,7 +72,14 @@ public class ProduitController {
         List<Produit> resultas = produitRepository.findByDesignationContainingIgnoreCase(designation);
         model.addAttribute("Produits", resultas);
         model.addAttribute("recherche", designation);
-        return "Produits";
+        return "produits";
+    }
+
+    @GetMapping("/produits/fournisseur/{id}")
+    public String getProduitDeFournisseur(@PathVariable("id") Long id , Model model){
+        List<Produit> produitsDefournisseur = produitRepository.findByFournisseurId(id);
+        model.addAttribute("Produits" , produitsDefournisseur);
+        return "produits";
     }
 
 }

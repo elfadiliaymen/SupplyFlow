@@ -14,6 +14,7 @@
         <th>name</th>
         <th>ville</th>
         <th>telephone</th>
+        <th>produits</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
         <td th:text="${f.name}"></td>
         <td th:text="${f.ville}"></td>
         <td th:text="${f.telephone}"></td>
+        <td>
+            <button><a th:href="@{'/produits/fournisseur/' + ${f.id}}">voir</a></button>
+        </td>
     </tr>
     </tbody>
 </table>
