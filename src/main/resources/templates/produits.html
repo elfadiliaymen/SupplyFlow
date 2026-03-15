@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Liste des Produits</h1>
-    <form th:action="@{/produits/recherche" method="GET">
+    <form th:action="@{/produits/recherche}" method="GET">
         <input type="text" name="designation" th:value="${recherche}">
         <button type="submit">rechercher</button>
     </form>
@@ -15,25 +15,30 @@
             <tr>
                 <th>ID</th>
                 <th>Désignation</th>
+                <th>Catégorie</th>
                 <th>Prix</th>
                 <th>Stock</th>
+                <th>Fournisseur</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             <tr th:each="p : ${Produits}">
                 <td th:text="${p.id}"></td>
                 <td th:text="${p.designation}"></td>
+                <td th:text="${p.categorie}"></td>
                 <td th:text="${p.prix}"></td>
                 <td th:text="${p.stock}"></td>
+                <td th:text="${p.fournisseur != null ? p.fournisseur.name : 'Pas de fournisseur'}"></td>
                 <td>
                     <a th:href="@{'/produits/modifier/' + ${p.id}}">Modifier</a>
 
                     <a th:href="@{'/produits/delete/' + ${p.id}}">Supprimer</a>
                 </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+            </table>
+            <h3>produits enregistres : <span th:text="${Produits.size()}"></span></h3>
     <br/>
     <a th:href = "@{/produits/ajouter}">Ajouter un produit</a>
     <a th:href="@{/}">Retour à l'accueil</a>

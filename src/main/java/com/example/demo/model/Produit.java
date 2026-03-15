@@ -13,8 +13,10 @@ public class Produit {
 
     private Long id;
     private String designation;
+    private String categorie;
     private double prix;
     private int stock;
+
     @ManyToOne
     @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
@@ -25,9 +27,10 @@ public class Produit {
     public Produit(){}
 
 
-    public Produit(Long id, String designation, double prix, int stock , Fournisseur fournisseur) {
+    public Produit(Long id, String designation, String categorie, double prix, int stock , Fournisseur fournisseur) {
         this.id = id;
         this.designation = designation;
+        this.categorie = categorie;
         this.prix = prix;
         this.stock = stock;
         this.fournisseur = fournisseur;
@@ -47,6 +50,14 @@ public class Produit {
 
     public void setDesignation(String designation) {
         this.designation = designation;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 
     public double getPrix() {

@@ -13,12 +13,33 @@
         <input type="text" th:field="*{designation}">
     </div>
     <div>
+        <label>Catégorie :</label>
+        <select th:field="*{categorie}">
+            <option value="Électronique">Électronique</option>
+            <option value="Alimentation">Alimentation</option>
+            <option value="Vêtements">Vêtements</option>
+            <option value="Maison">Maison</option>
+            <option value="Beauté">Beauté</option>
+        </select>
+    </div>
+    <div>
         <label>Prix :</label>
         <input type="number"  th:field="*{prix}">
     </div>
     <div>
         <label>Stock :</label>
         <input type="number" th:field="*{stock}">
+    </div>
+    <div>
+        <label>Fournisseur :</label>
+        <select th:field="*{fournisseur}">
+<option value="">---</option>
+            <option th:each="f : ${Fournisseurs}"
+            th:value="${f.id}"
+            th:text="${f.name}"></option>
+
+        </select>
+
     </div>
     <button type="submit">Enregistrer</button>
 </form>

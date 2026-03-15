@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface ProduitRepository extends JpaRepository<Produit, Long> {
     List<Produit> findByDesignationContainingIgnoreCase(String designation);
+    List<Produit> findByFournisseurId(Long id);
 }
 

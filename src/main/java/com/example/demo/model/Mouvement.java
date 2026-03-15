@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 
 
 @Entity
@@ -20,11 +19,12 @@ public class Mouvement {
 
     public Mouvement() {}
 
-    public Mouvement(Long id, String type, int quanity, String date) {
+    public Mouvement(Long id, String type, int quanity, String date, Produit produit) {
         this.id = id;
         this.type = type;
         this.quanity = quanity;
         this.date = date;
+        this.produit = produit;
     }
 
     public Long getId() {
@@ -57,5 +57,13 @@ public class Mouvement {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Produit getProduit() {
+        return produit;
+    }
+
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 }
