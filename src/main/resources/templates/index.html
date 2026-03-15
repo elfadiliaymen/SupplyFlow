@@ -2,14 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Bienvenue</title>
+    <title>Bienvenue - SupplyFlow</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-<h1>Bienvenue dans SupplyFlow !</h1>
-<a th:href="@{/produits}">Les Produits</a>
-<hr>
-<a th:href="@{/fournisseurs}">Les Fournisseurs</a>
-<hr>
-<a th:href="@{/mouvements}">Les Mouvements</a>
+<body class="bg-base-200 min-h-screen flex items-center justify-center p-4">
+    <div class="card w-full max-w-md bg-base-100 shadow-xl p-10 text-center border border-base-300">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-primary tracking-tight">SupplyFlow</h1>
+            <p class="text-base-content/60 mt-2">Gestion de stock et logistique</p>
+        </div>
+        
+        <div class="flex flex-col gap-3">
+            <a th:href="@{/produits}" class="btn btn-primary">
+                Produits
+            </a>
+            <a th:href="@{/fournisseurs}" class="btn btn-outline">
+                Fournisseurs
+            </a>
+            <a th:href="@{/mouvements}" class="btn btn-outline">
+                Mouvements
+            </a>
+        </div>
+
+        <div class="divider mt-8"></div>
+
+    </div>
 </body>
 </html>

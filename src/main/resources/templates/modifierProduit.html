@@ -1,53 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Modifier le Produit - SupplyFlow</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="p-8 bg-base-200 min-h-screen flex justify-center items-start">
+    <div class="w-full max-w-lg card bg-base-100 shadow-sm p-8 border border-base-300">
+        <h1 class="text-2xl font-bold mb-6">Modifier le Produit</h1>
 
-<h1>Modifier un Produit</h1>
+        <form th:action="@{/produits/update}" th:object="${Produit}" method="Post" class="space-y-4">
+            <!-- hidden method for PUT support if configured, or just POST -->
+            <input type="hidden" th:field="*{id}">
+            
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Désignation</span></label>
+                <input type="text" th:field="*{designation}" class="input input-bordered w-full input-sm">
+            </div>
 
-<form th:action="@{/produits/update}" th:object="${Produit}"  method="PUT">
-    <input type="hidden" th:field="*{id}">
-    <div>
-        <label>Désignation :</label>
-        <input type="text" th:field="*{designation}" value="">
-    </div>
-    <div>
-        <label>Catégorie :</label>
-        <select th:field="*{categorie}">
-            <option value="Électronique">Électronique</option>
-            <option value="Alimentation">Alimentation</option>
-            <option value="Vêtements">Vêtements</option>
-            <option value="Maison">Maison</option>
-            <option value="Beauté">Beauté</option>
-        </select>
-    </div>
-    <div>
-        <label>Prix :</label>
-        <input type="number"  th:field="*{prix}">
-    </div>
-    <div>
-        <label>Stock :</label>
-        <input type="number" th:field="*{stock}">
-    </div>
-    <div>
-        <label>Fournisseur :</label>
-        <select th:field = "*{fournisseur}">
-            <option value="">---</option>
-            <option  th:each = "f : ${Fournisseurs}"
-                     th:value ="${f.id}"
-                     th:text = "${f.name}">
-            </option>
-        </select>
-    </div>
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Catégorie</span></label>
+                <select th:field="*{categorie}" class="select select-bordered w-full select-sm font-normal">
+                    <option value="Électronique">Électronique</option>
+                    <option value="Alimentation">Alimentation</option>
+                    <option value="Vêtements">Vêtements</option>
+                    <option value="Maison">Maison</option>
+                    <option value="Beauté">Beauté</option>
+                </select>
+            </div>
 
-    <button type="submit">Enregistrer les modifications</button>
-</form>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="form-control w-full">
+                    <label class="label"><span class="label-text font-medium">Prix (€)</span></label>
+                    <input type="number" th:field="*{prix}" step="0.01" class="input input-bordered w-full input-sm">
+                </div>
+                <div class="form-control w-full">
+                    <label class="label"><span class="label-text font-medium">Stock</span></label>
+                    <input type="number" th:field="*{stock}" class="input input-bordered w-full input-sm">
+                </div>
+            </div>
 
-<br>
-<a th:href="@{/produits}">Annuler et retourner à la liste</a>
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Fournisseur</span></label>
+                <select th:field="*{fournisseur}" class="select select-bordered w-full select-sm font-normal">
+                    <option value="">--- Sélectionner un fournisseur ---</option>
+                    <option th:each="f : ${Fournisseurs}" th:value="${f.id}" th:text="${f.name}"></option>
+                </select>
+            </div>
 
+            <div class="flex gap-3 pt-6">
+                <button type="submit" class="btn btn-primary flex-1">Enregistrer les modifications</button>
+                <a th:href="@{/produits}" class="btn btn-ghost border-base-300">Annuler</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

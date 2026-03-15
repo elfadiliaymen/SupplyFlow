@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ajouter un Fournisseur - SupplyFlow</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="p-8 bg-base-200 min-h-screen flex justify-center items-start">
+    <div class="w-full max-w-lg card bg-base-100 shadow-sm p-8 border border-base-300">
+        <h1 class="text-2xl font-bold mb-6">Ajouter un Fournisseur</h1>
 
-<h1>Ajouter un Fournisseur</h1>
-<form th:action="@{/fournisseurs/ajouter}" th:object="${Fournisseur}"  method="Post">
-    <div>
-        <label>Nom :</label>
-        <input type="text" th:field="*{name}">
-    </div>
-    <div>
-        <label>Ville :</label>
-        <input type="text" th:field="*{ville}">
-    </div>
-    <div>
-        <label>Telephone :</label>
-        <input type="number" th:field="*{telephone}">
-    </div>
-    <button type="submit">Enregistrer</button>
-</form>
+        <form th:action="@{/fournisseurs/ajouter}" th:object="${Fournisseur}" method="Post" class="space-y-4">
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Nom de l'entreprise</span></label>
+                <input type="text" th:field="*{name}" placeholder="ex: Tech Solutions SARL" class="input input-bordered w-full input-sm">
+            </div>
 
-<br>
-<a th:href="@{/fournisseurs}">Annuler et retourner à la liste</a>
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Ville</span></label>
+                <input type="text" th:field="*{ville}" placeholder="ex: Paris" class="input input-bordered w-full input-sm">
+            </div>
+
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Téléphone</span></label>
+                <input type="text" th:field="*{telephone}" placeholder="ex: 0123456789" class="input input-bordered w-full input-sm">
+            </div>
+
+            <div class="flex gap-3 pt-6">
+                <button type="submit" class="btn btn-primary flex-1">Enregistrer</button>
+                <a th:href="@{/fournisseurs}" class="btn btn-ghost border-base-300">Annuler</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

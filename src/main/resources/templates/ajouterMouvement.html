@@ -1,46 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ajouter un Mouvement - SupplyFlow</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="p-8 bg-base-200 min-h-screen flex justify-center items-start">
+    <div class="w-full max-w-lg card bg-base-100 shadow-sm p-8 border border-base-300">
+        <h1 class="text-2xl font-bold mb-6">Ajouter un Mouvement</h1>
 
-<h1>Ajouter une Mouvement</h1>
+        <form th:action="@{/mouvements/ajouter}" th:object="${Mouvement}" method="Post" class="space-y-4">
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Type de mouvement</span></label>
+                <select th:field="*{type}" class="select select-bordered w-full select-sm font-normal">
+                    <option th:value="Entree">Entrée (Approvisionnement)</option>
+                    <option th:value="Sortie">Sortie (Vente/Perte)</option>
+                </select>
+            </div>
 
-<form th:action="@{/mouvements/ajouter}" th:object="${Mouvement}"  method="Post">
-    <div>
-        <label>Type :</label>
-        <select th:field="*{type}" >
-            <option th:value = "Entree">Entrée</option>
-            <option th:value = "Sortie">Sortie</option>
-        </select>
+            <div class="form-control w-full">
+                <label class="label"><span class="label-text font-medium">Produit concerné</span></label>
+                <select th:field="*{produit}" class="select select-bordered w-full select-sm font-normal">
+                    <option value="">--- Sélectionner un produit ---</option>
+                    <option th:each="p : ${Produits}" th:value="${p.id}" th:text="${p.designation}"></option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="form-control w-full">
+                    <label class="label"><span class="label-text font-medium">Quantité</span></label>
+                    <input type="number" th:field="*{quanity}" class="input input-bordered w-full input-sm">
+                </div>
+                <div class="form-control w-full">
+                    <label class="label"><span class="label-text font-medium">Date</span></label>
+                    <input type="date" th:field="*{date}" class="input input-bordered w-full input-sm">
+                </div>
+            </div>
+
+            <div class="flex gap-3 pt-6">
+                <button type="submit" class="btn btn-primary flex-1">Enregistrer</button>
+                <a th:href="@{/mouvements}" class="btn btn-ghost border-base-300">Annuler</a>
+            </div>
+        </form>
     </div>
-    <div>
-        <label>Produit :</label>
-        <select th:field="*{produit}">
-        <option value="">---</option>
-        <option th:each = "p : ${Produits}"
-        th:value="${p.id}"
-        th:text = "${p.designation}">
-
-        </option>
-
-        </select>
-    </div>
-    <div>
-        <label>Quantite :</label>
-        <input type="number"  th:field="*{quanity}">
-    </div>
-    <div>
-        <label>Date :</label>
-        <input type="date" th:field="*{date}">
-    </div>
-    <button type="submit">Enregistrer</button>
-</form>
-
-<br>
-<a th:href="@{/mouvements}">Annuler et retourner à la liste</a>
-
 </body>
 </html>
