@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Liste des Fournisseurs - SupplyFlow</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-<h1>Liste des Fournisseurs</h1>
+<body class="p-8 bg-base-200 min-h-screen">
+    <div class="max-w-5xl mx-auto card bg-base-100 shadow-sm p-6 border border-base-300">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-bold">Liste des Fournisseurs</h1>
+            <a th:href="@{/fournisseurs/ajouter}" class="btn btn-primary btn-sm">Ajouter un Fournisseur</a>
+        </div>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>name</th>
-        <th>ville</th>
-        <th>telephone</th>
-        <th>produits</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="f : ${Fournisseurs}">
-        <td th:text="${f.id}"></td>
-        <td th:text="${f.name}"></td>
-        <td th:text="${f.ville}"></td>
-        <td th:text="${f.telephone}"></td>
-        <td>
-            <button><a th:href="@{'/produits/fournisseur/' + ${f.id}}">voir</a></button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<br/>
-<a th:href = "@{/fournisseurs/ajouter}">Ajouter un Fournisseur</a>
-<a th:href="@{/}">Retour à l'accueil</a>
+        <div class="overflow-x-auto">
+            <table class="table table-sm w-full">
+                <thead>
+                    <tr class="bg-base-200">
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Ville</th>
+                        <th>Téléphone</th>
+                        <th class="text-right">Produits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="f : ${Fournisseurs}" class="hover:bg-base-50">
+                        <td th:text="${f.id}" class="text-base-content/50"></td>
+                        <td th:text="${f.name}" class="font-medium"></td>
+                        <td th:text="${f.ville}"></td>
+                        <td th:text="${f.telephone}"></td>
+                        <td class="text-right">
+                            <a th:href="@{'/produits/fournisseur/' + ${f.id}}" class="btn btn-xs btn-ghost border-base-300">Voir les produits</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <div class="mt-8 pt-4 border-t border-base-200 flex justify-end gap-4 text-sm">
+            <a th:href="@{/}" class="link link-hover text-primary">Retour à l'accueil</a>
+        </div>
+    </div>
 </body>
 </html>
